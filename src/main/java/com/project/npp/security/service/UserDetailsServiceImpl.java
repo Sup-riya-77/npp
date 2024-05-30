@@ -9,14 +9,14 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.project.npp.entities.UserEntity;
 import com.project.npp.repositories.UserRepository;
-import com.project.npp.service.UserService;
+import com.project.npp.service.UserEntityService;
 
 
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 	@Autowired
-	private UserService userService;
+	private UserEntityService userService;
 
 	@Override
 	@Transactional

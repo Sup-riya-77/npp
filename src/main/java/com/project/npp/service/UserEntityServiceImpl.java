@@ -11,7 +11,7 @@ import com.project.npp.entities.UserEntity;
 import com.project.npp.repositories.UserRepository;
 
 @Service
-public class UserServiceImpl implements UserService {
+public class UserEntityServiceImpl implements UserEntityService {
 
 	@Autowired
 	UserRepository repo;

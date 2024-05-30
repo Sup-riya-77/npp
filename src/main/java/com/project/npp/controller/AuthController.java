@@ -12,7 +12,7 @@ import com.project.npp.security.service.UserDetailsImpl;
 import com.project.npp.security.service.UserDetailsServiceImpl;
 import com.project.npp.service.OperatorService;
 import com.project.npp.service.RoleService;
-import com.project.npp.service.UserService;
+import com.project.npp.service.UserEntityService;
 
 import jakarta.validation.Valid;
 import java.util.Optional;
@@ -41,7 +41,7 @@ public class AuthController {
 	UserDetailsServiceImpl userDetailsService;
 
 	@Autowired
-	UserService userService;
+	UserEntityService userService;
 
 	@Autowired
 	RoleService roleService;

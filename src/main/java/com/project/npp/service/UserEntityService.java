@@ -6,7 +6,7 @@ import com.project.npp.entities.ERole;
 import com.project.npp.entities.Role;
 import com.project.npp.entities.UserEntity;
 
-public interface UserService {
+public interface UserEntityService {
 
 	public UserEntity addUserEntity(UserEntity user);
 

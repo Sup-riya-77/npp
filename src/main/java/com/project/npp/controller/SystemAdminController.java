@@ -17,14 +17,14 @@ import com.project.npp.entities.Role;
 import com.project.npp.entities.request.OperatorRequest;
 import com.project.npp.service.OperatorService;
 import com.project.npp.service.RoleService;
-import com.project.npp.service.UserService;
+import com.project.npp.service.UserEntityService;
 
 @RestController
 @RequestMapping("/api/admin")
 public class SystemAdminController {
 
 	@Autowired
-	UserService userService;
+	UserEntityService userService;
 
 	@Autowired
 	RoleService roleService;
