@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.project.npp.entities.Customer;
+import com.project.npp.entities.Status;
 import com.project.npp.repositories.CustomerRepository;
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -14,6 +15,7 @@ public class CustomerServiceImpl implements CustomerService {
 	CustomerRepository repo;
 	@Override
 	public Customer addCustomer(Customer customer) {
+		customer.setStatus(Status.PENDING);
 		Customer cust= repo.save(customer);
 		return cust;
 	}
@@ -30,8 +32,19 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public Customer updateCustomer(Customer customer) {
-		Customer cust= repo.save(customer);
+	    Customer cust= repo.save(customer);
 		return cust;
+	}
+
+	@Override
+	public String deleteCustomerById(Integer id) {
+		Optional<Customer> cust=repo.findById(id);
+		if(cust.isPresent())
+		{
+			repo.deleteById(id);
+			return "Deleted Successfully!!";
+		}
+		return null;
 	}
 
 }

@@ -1,7 +1,6 @@
 package com.project.npp.security.payload.response;
 
 import com.project.npp.entities.Operator;
-import com.project.npp.entities.Role;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

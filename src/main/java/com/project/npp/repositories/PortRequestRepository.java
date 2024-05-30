@@ -3,8 +3,8 @@ package com.project.npp.repositories;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.project.npp.entities.Customer;
+import com.project.npp.entities.PortRequest;
 @Repository
-public interface CustomerRepository extends CrudRepository<Customer, Integer>{
+public interface PortRequestRepository extends CrudRepository<PortRequest, Integer> {
 
 }

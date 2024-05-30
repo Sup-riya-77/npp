@@ -9,18 +9,19 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.project.npp.entities.UserEntity;
 import com.project.npp.repositories.UserRepository;
+import com.project.npp.service.UserService;
 
 
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 	@Autowired
-	private UserRepository userRepository;
+	private UserService userService;
 
 	@Override
 	@Transactional
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		UserEntity user = userRepository.findByUsername(username)
+		UserEntity user = userService.findByUsername(username)
 				.orElseThrow(() -> new UsernameNotFoundException("User Not Found with username: " + username));
 
 		return UserDetailsImpl.build(user);

@@ -10,13 +10,11 @@ public interface UserService {
 
 	public UserEntity addUserEntity(UserEntity user);
 
-	public String updateRole(Integer user_id, Role role);
+	public String updateRole(Integer userId, Role role);
 
 	public Optional<UserEntity> findByUsername(String username);
 
 	public Boolean existsByUsername(String username);
 
 	public Optional<UserEntity> findByRole(ERole role);
-	
-	//public UserEntity updateUserEntity(UserEntity user);
 }

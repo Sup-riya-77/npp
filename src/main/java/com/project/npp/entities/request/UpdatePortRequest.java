@@ -1,0 +1,24 @@
+package com.project.npp.entities.request;
+
+import java.time.LocalDate;
+import com.project.npp.entities.Status;
+
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
+public class UpdatePortRequest {
+	private Integer requestId;
+	private Integer customerId;
+	private LocalDate requestDate;
+
+}

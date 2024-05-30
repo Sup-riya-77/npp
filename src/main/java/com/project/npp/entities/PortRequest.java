@@ -1,5 +1,7 @@
 package com.project.npp.entities;
 
+import java.time.LocalDate;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -15,24 +17,21 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name="customer")
+@Table(name="port_request")
 @Getter
 @Setter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class Customer {
+public class PortRequest {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer customerId;
-	private String name;
-	private String email;
-	private Long  phoneNumber;
+	private Integer requestId;
 	@ManyToOne
-	private Operator currentOperator;
-	@ManyToOne
-	private Operator newOperator;
+	private Customer customer;
+	private LocalDate requestDate;
 	@Enumerated(EnumType.STRING)
-	private Status status;
-
+	private Status approvalStatus;
+	private Boolean complianceChecked;
+	private LocalDate completionDate;
 }

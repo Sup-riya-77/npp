@@ -17,8 +17,8 @@ public class UserServiceImpl implements UserService {
 	UserRepository repo;
 	
 	@Override
-	public String updateRole(Integer user_id, Role role) {
-		Optional<UserEntity> user= repo.findById(user_id);
+	public String updateRole(Integer userId, Role role) {
+		Optional<UserEntity> user= repo.findById(userId);
 		if(user.isPresent())
 		{
 		  user.get().setRole(role);
