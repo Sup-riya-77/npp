@@ -18,3 +18,13 @@ spring:
 myapp:
   jwtSecret: BLUEYONDERBELLANDURBENGALURUBLUEYONDERBELLANDURBENGALURUBLUEYONDERBELLANDURBENGALURUBENGALURUBLUEYONDERBELLANDURBENGALURUBENGALURUBLUEYONDERBELLANDURBENGALURU
   jwtExpirationMs: 86400000
+  
+logging:
+  file:
+    name: logs/app.log
+  logback:
+    rollingpolicy:
+      file-name-pattern: logs/%d{yyyy-MM, aux}/app.%d{yyyy-MM-dd}.%i.log
+      max-file-size: 100MB
+      total-size-cap: 10GB
+      max-history: 10

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.project.npp.entities.UserEntity;
-import com.project.npp.repositories.UserRepository;
 import com.project.npp.service.UserEntityService;
 
 

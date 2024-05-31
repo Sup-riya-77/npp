@@ -11,6 +11,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.project.npp.entities.Operator;
 import com.project.npp.entities.UserEntity;
+
+import jakarta.persistence.Transient;
 public class UserDetailsImpl implements UserDetails {
     private static final long serialVersionUID = 1L;
 
@@ -23,7 +25,7 @@ public class UserDetailsImpl implements UserDetails {
     private String password;
 
     private GrantedAuthority authority;
-    
+ 
     private Operator operator;
 
     public UserDetailsImpl(Integer id, String username, String password,

@@ -1,5 +1,7 @@
 package com.project.npp.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,8 @@ import com.project.npp.service.PortRequestService;
 @RestController
 @RequestMapping("/api/complianceofficer")
 public class ComplianceOfficerController {
+	
+	private static final Logger loggers = LoggerFactory.getLogger(ComplianceOfficerController.class);
 	@Autowired
 	PortRequestService portRequestService;
 	
@@ -28,6 +32,7 @@ public class ComplianceOfficerController {
 	@PostMapping("/addlog")
 	public ResponseEntity<ComplianceLogs> addLog(@RequestBody ComplianceLogsRequest complianceLogsRequest )
 	{
+		loggers.info("add log");
 		ComplianceLogs complianceLogs  = new ComplianceLogs();
 		complianceLogs.setCheckPassed(complianceLogsRequest.isCheckPassed());
 		complianceLogs.setNotes(complianceLogsRequest.getNotes());
@@ -45,6 +50,7 @@ public class ComplianceOfficerController {
 			PortRequest portRequest= portRequestService.getPortRequest(complianceLogsRequest.getPortRequestId());
 			complianceLogs.setPortRequest(portRequest);
 			ComplianceLogs complianceLog=complianceLogsService.addLog(complianceLogs);
+			loggers.info("log added");
 			return new ResponseEntity<ComplianceLogs>(complianceLog,HttpStatus.OK);
 		}
 	}

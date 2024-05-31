@@ -17,6 +17,7 @@ import io.swagger.v3.oas.models.security.SecurityScheme;
 public class SwaggerOpenApiConfig {
 	@Bean
 	public OpenAPI springOpenAPI() {
+		@SuppressWarnings("unused")
 		final String securitySchemeName = "bearerAuth";
 		return new OpenAPI()
 				.components(new Components().addSecuritySchemes("BearerAuthentication",
