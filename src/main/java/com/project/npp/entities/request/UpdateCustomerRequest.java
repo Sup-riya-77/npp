@@ -1,6 +1,8 @@
 package com.project.npp.entities.request;
 
 
+import com.project.npp.entities.Status;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,5 +22,6 @@ public class UpdateCustomerRequest {
 	private Long  phoneNumber;
 	private Integer currentOperatorId;
 	private Integer newOperatorId;
+	private Status status;
 
 }

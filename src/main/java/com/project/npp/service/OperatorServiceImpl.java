@@ -18,15 +18,13 @@ public class OperatorServiceImpl implements OperatorService {
 	@Override
 	public Operator getOperatorById(Integer id) throws OperatorNotFoundException {
 		Optional<Operator> operator = repo.findById(id);
-		if (operator.isPresent())
-			return operator.get();
-	  throw new OperatorNotFoundException("Operator with Id "+id+" NotFound");
+		if (operator.isPresent()) return operator.get();
+		else  throw new OperatorNotFoundException("Operator with Id "+id+" NotFound");
 	}
 
 	@Override
 	public Operator addOperator(Operator operator) {
-		Operator op = repo.save(operator);
-		return op;
+		return repo.save(operator);
 	}
 
 	@Override
@@ -34,10 +32,9 @@ public class OperatorServiceImpl implements OperatorService {
 		Optional<Operator> op = repo.findById(operator.getOperatorId());
 		if (op.isPresent()) 
 		{
-		Operator optr= repo.save(op.get());
-		return optr;
+		return repo.save(operator);
 		}
-		throw new OperatorNotFoundException("Operator with Id "+operator.getOperatorId()+" NotFound");
+		else throw new OperatorNotFoundException("Operator with Id "+operator.getOperatorId()+" NotFound");
 	}
 
 	@Override
@@ -48,7 +45,7 @@ public class OperatorServiceImpl implements OperatorService {
 			 repo.deleteById(id);
 			 return "Deleted Successfully!!";
 			 }
-		 throw new OperatorNotFoundException("Operator with Id "+id+" NotFound");
+		 else  throw new OperatorNotFoundException("Operator with Id "+id+" NotFound");
 }
 
 }

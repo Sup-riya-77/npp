@@ -68,6 +68,7 @@ public class CustomerServiceController {
 		Operator newOperator= operatorService.getOperatorById(updateCustomerRequest.getNewOperatorId());
 		customer.setCurrentOperator(currentOperator);
 		customer.setNewOperator(newOperator);
+		customer.setStatus(updateCustomerRequest.getStatus());
 		Customer cust=customerService.updateCustomer(customer);
 		return new ResponseEntity<Customer>(cust,HttpStatus.OK);
 	}
@@ -104,6 +105,7 @@ public class CustomerServiceController {
 		PortRequest portRequest= new PortRequest();
 		portRequest.setRequestId(updatePortRequest.getRequestId());
 		portRequest.setRequestDate(updatePortRequest.getRequestDate());
+		portRequest.setComplianceChecked(updatePortRequest.getComplianceChecked());
 		Customer customer=customerService.getCustomerById(updatePortRequest.getCustomerId());
 		portRequest.setCustomer(customer);
 		PortRequest portReq=portRequestService.updatePortRequest(portRequest);

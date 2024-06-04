@@ -16,5 +16,6 @@ public class UpdatePortRequest {
 	private Integer requestId;
 	private Integer customerId;
 	private LocalDate requestDate;
+	private Boolean complianceChecked;
 
 }

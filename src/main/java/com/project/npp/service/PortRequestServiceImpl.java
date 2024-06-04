@@ -44,22 +44,24 @@ public class PortRequestServiceImpl implements PortRequestService {
 		Optional<PortRequest> p=repo.findById(portRequest.getRequestId());
 		if(p.isPresent())
 		{
-		if(portRequest.getComplianceChecked())
-		{
+		   if(portRequest.getComplianceChecked())
+		      {
 			portRequest.setApprovalStatus(Status.COMPLETED);
 			portRequest.setCompletionDate(LocalDate.now());
 			Customer customer= customerService.getCustomerById(portRequest.getCustomer().getCustomerId());
 			customer.setStatus(Status.COMPLETED);
 			customerService.updateCustomer(customer);
+			PortRequest portReq= repo.save(portRequest);
+			return portReq;
 		}
 		else 
 		{
 			portRequest.setApprovalStatus(Status.PENDING);
 		    portRequest.setCompletionDate(null);
+		    PortRequest portReq= repo.save(portRequest);
+			return portReq;
 		}
-		PortRequest portReq= repo.save(portRequest);
 		
-		return portReq;
 		}
 		else throw new  PortRequestNotFoundException("Port Request with id "+portRequest.getRequestId()+" not found");
 	}
