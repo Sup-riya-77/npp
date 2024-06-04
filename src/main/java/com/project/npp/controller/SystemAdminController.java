@@ -15,6 +15,8 @@ import com.project.npp.entities.ERole;
 import com.project.npp.entities.Operator;
 import com.project.npp.entities.Role;
 import com.project.npp.entities.request.OperatorRequest;
+import com.project.npp.exceptions.OperatorNotFoundException;
+import com.project.npp.exceptions.RoleNotFoundException;
 import com.project.npp.service.OperatorService;
 import com.project.npp.service.RoleService;
 import com.project.npp.service.UserEntityService;
@@ -33,7 +35,7 @@ public class SystemAdminController {
 	OperatorService operatorService;
 
 	@PostMapping("/updateuserrole")
-	public ResponseEntity<String> updateUserRole(@RequestParam("id") Integer userId, @RequestParam("role") ERole role) {
+	public ResponseEntity<String> updateUserRole(@RequestParam("id") Integer userId, @RequestParam("role") ERole role) throws RoleNotFoundException {
 		Optional<Role> r = roleService.findRoleByName(role);
 		String message = userService.updateRole(userId, r.get());
 		return new ResponseEntity<String>(message, HttpStatus.OK);
@@ -49,19 +51,19 @@ public class SystemAdminController {
 	}
 
 	@PostMapping("/getoperator")
-	public ResponseEntity<Operator> getOperator(@RequestParam("operatorId") Integer operatorId) {
+	public ResponseEntity<Operator> getOperator(@RequestParam("operatorId") Integer operatorId) throws OperatorNotFoundException {
 		Operator operator = operatorService.getOperatorById(operatorId);
 		return new ResponseEntity<Operator>(operator, HttpStatus.OK);
 	}
 	
 	@PostMapping("/updateoperator")
-	public ResponseEntity<Operator> updateOperator(@RequestBody Operator operator) {
+	public ResponseEntity<Operator> updateOperator(@RequestBody Operator operator) throws OperatorNotFoundException {
 		Operator op = operatorService.updateOperator(operator);
 		return new ResponseEntity<Operator>(op, HttpStatus.OK);
 	}
 	
 	@PostMapping("/deleteoperator")
-	public ResponseEntity<String> deleteOperator(@RequestParam("operatorId") Integer operatorId) {
+	public ResponseEntity<String> deleteOperator(@RequestParam("operatorId") Integer operatorId) throws OperatorNotFoundException {
 		String message = operatorService.deleteOperator(operatorId);
 		return new ResponseEntity<String>(message, HttpStatus.OK);
 	}

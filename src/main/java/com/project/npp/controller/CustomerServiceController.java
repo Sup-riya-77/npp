@@ -16,6 +16,9 @@ import com.project.npp.entities.request.CustomerRequest;
 import com.project.npp.entities.request.UpdateCustomerRequest;
 import com.project.npp.entities.request.UpdatePortRequest;
 import com.project.npp.entities.request.UserPortRequest;
+import com.project.npp.exceptions.CustomerNotFoundException;
+import com.project.npp.exceptions.OperatorNotFoundException;
+import com.project.npp.exceptions.PortRequestNotFoundException;
 import com.project.npp.service.CustomerService;
 import com.project.npp.service.OperatorService;
 import com.project.npp.service.PortRequestService;
@@ -33,7 +36,7 @@ public class CustomerServiceController {
 	PortRequestService portRequestService; 
 	
 	@PostMapping("/addcustomer")
-	public ResponseEntity<Customer> addCustomer(@RequestBody CustomerRequest customerRequest){
+	public ResponseEntity<Customer> addCustomer(@RequestBody CustomerRequest customerRequest) throws OperatorNotFoundException{
 	
 		Customer customer=new Customer();
 		customer.setName(customerRequest.getName());
@@ -48,14 +51,14 @@ public class CustomerServiceController {
 	}
 	
 	@PostMapping("/getcustomer")
-	public ResponseEntity<Customer> getCustomer(@RequestParam("customerId") Integer customerId){
+	public ResponseEntity<Customer> getCustomer(@RequestParam("customerId") Integer customerId) throws CustomerNotFoundException{
 	
 		Customer customer=customerService.getCustomerById(customerId);
 		return new ResponseEntity<Customer>(customer,HttpStatus.OK);
 	}
 	
 	@PostMapping("/updatecustomer")
-	public ResponseEntity<Customer> updateCustomer(@RequestBody UpdateCustomerRequest updateCustomerRequest){
+	public ResponseEntity<Customer> updateCustomer(@RequestBody UpdateCustomerRequest updateCustomerRequest) throws OperatorNotFoundException, CustomerNotFoundException{
 		Customer customer=new Customer();
 		customer.setCustomerId(updateCustomerRequest.getCustomerId());
 		customer.setName(updateCustomerRequest.getName());
@@ -70,7 +73,7 @@ public class CustomerServiceController {
 	}
 	
 	@PostMapping("/deletecustomer")
-	public ResponseEntity<String> deleteCustomer(@RequestParam("customerId") Integer customerId){
+	public ResponseEntity<String> deleteCustomer(@RequestParam("customerId") Integer customerId) throws CustomerNotFoundException{
 		String message=customerService.deleteCustomerById(customerId);
 		return new ResponseEntity<String>(message,HttpStatus.OK);
 	}
@@ -78,7 +81,7 @@ public class CustomerServiceController {
 	//**************************************************************************************************
 	
 	@PostMapping("/submitportrequest")
-	public ResponseEntity<PortRequest> submitPortRequest(@RequestBody UserPortRequest userPortRequest)
+	public ResponseEntity<PortRequest> submitPortRequest(@RequestBody UserPortRequest userPortRequest) throws CustomerNotFoundException
 	{
 		PortRequest portRequest= new PortRequest();
 		portRequest.setRequestDate(userPortRequest.getRequestDate());
@@ -89,14 +92,14 @@ public class CustomerServiceController {
 	}
 	
 	@PostMapping("/getportrequest")
-	public ResponseEntity<PortRequest> getPortRequest(@RequestParam("requestId") Integer requestId){
+	public ResponseEntity<PortRequest> getPortRequest(@RequestParam("requestId") Integer requestId) throws PortRequestNotFoundException{
 	
 		PortRequest portRequest= portRequestService.getPortRequest(requestId);
 		return new ResponseEntity<PortRequest>(portRequest,HttpStatus.OK);
 	}
 	
 	@PostMapping("/updateportrequest")
-	public ResponseEntity<PortRequest> updatePortRequest(@RequestBody UpdatePortRequest updatePortRequest)
+	public ResponseEntity<PortRequest> updatePortRequest(@RequestBody UpdatePortRequest updatePortRequest) throws CustomerNotFoundException, PortRequestNotFoundException
 	{
 		PortRequest portRequest= new PortRequest();
 		portRequest.setRequestId(updatePortRequest.getRequestId());
@@ -108,7 +111,7 @@ public class CustomerServiceController {
 	}
 	
 	@PostMapping("/deleteportrequest")
-	public ResponseEntity<String> deletePortRequest(@RequestParam("requestId") Integer requestId){
+	public ResponseEntity<String> deletePortRequest(@RequestParam("requestId") Integer requestId) throws PortRequestNotFoundException{
 	
 		String message= portRequestService.deletePortRequest(requestId);
 		return new ResponseEntity<String>(message,HttpStatus.OK);
